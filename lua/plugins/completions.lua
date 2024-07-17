@@ -1,23 +1,19 @@
 return {
   {
-    "hrsh7th/cmp-nvim-lsp"
-  },
-  {
-    "L3MON4D3/LuaSnip",
+    "hrsh7th/nvim-cmp",
     dependencies = {
+      "onsails/lspkind.nvim",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-buffer",
+      { "L3MON4D3/LuaSnip", build = "make install_jsregexp" },
       "saadparwaiz1/cmp_luasnip",
       "rafamadriz/friendly-snippets",
     },
-  },
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-    },
     config = function()
       local cmp = require("cmp")
-
+      local lspkind = require("lspkind")
+      --lspkind.init {}
       --vim.opt.completeopt={"menu", "menuone", "noselect"}
       --vim.opt.shortmess:append "c"
 
@@ -38,15 +34,34 @@ return {
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
+          ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
+          ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+          ["<C-y>"] = cmp.mapping(
+            cmp.mapping.confirm {
+              behavior = cmp.ConfirmBehavior.Insert,
+              select = true,
+            },
+            { "i", "c" }
+          ),
         }),
         sources = cmp.config.sources({
-          { name = "luasnip" },
-          { name = "nvim_lsp" },
-        }, {
-          { name = "buffer" },
-        }, {
-          { name = "path" }
+          { name = "nvim_lsp", keyword_length = 4 },
+          { name = "luasnip",  keyword_length = 4 },
+          { name = "buffer",   keyword_length = 4 },
+          { name = "path",     keyword_length = 4 }
+        }),
+        formatting = {
+          format = lspkind.cmp_format({
+            mode = "symbol_text",
+            menu = ({
+              buffer = "[Buf]",
+              nvim_lsp = "[LSP]",
+              luasnip = "[LuaS]",
+              nvim_lua = "[Lua]",
+              path = "[Path]"
+            })
           }),
+        },
       })
     end,
   },
