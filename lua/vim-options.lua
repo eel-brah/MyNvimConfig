@@ -35,8 +35,8 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 -- Display whitespaces
-vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+--vim.opt.list = true
+--vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- Preview substitutions live
 vim.opt.inccommand = 'split'
@@ -78,6 +78,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- Costume keymaps
 vim.keymap.set("n", "<leader>w", ":w<CR>", {})
 vim.keymap.set("n", "<leader>q", ":q<CR>", {})
-vim.keymap.set("n", "<leader>fq", ":q!<CR>", {})
+vim.keymap.set("n", "<leader>!q", ":q!<CR>", {})
 vim.keymap.set("n", "<leader>x", ":x<CR>", {})
 vim.keymap.set("i", "jj", "<ESC>", {})

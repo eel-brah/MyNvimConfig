@@ -1,6 +1,7 @@
 return {
   {
-    'nvim-telescope/telescope.nvim', tag = '0.1.8',
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.8',
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
       local builtin = require("telescope.builtin")
@@ -9,6 +10,18 @@ return {
       vim.keymap.set("n", "<leader><leader>", builtin.oldfiles, {})
       vim.keymap.set("n", "<leader>fs", builtin.grep_string, {})
       vim.keymap.set("n", "<leader>km", builtin.keymaps, {})
+
+      vim.keymap.set('n', '<leader>/', function()
+        builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+          winblend = 10,
+          previewer = false,
+        })
+      end, { desc = '[/] Fuzzily search in current buffer' })
+
+      vim.keymap.set('n', '<leader>sn', function()
+        builtin.find_files { cwd = vim.fn.stdpath 'config' }
+      end, { desc = '[S]earch [N]eovim files' })
+
     end
   },
   {
