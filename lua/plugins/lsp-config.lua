@@ -11,34 +11,43 @@ return {
     lazy = false,
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = {"lua_ls", "clangd", "pyright"}
+        ensure_installed = { "lua_ls", "clangd", "pyright" }
       })
       require("mason-lspconfig").setup_handlers {
-        function (server_name)
-            require("lspconfig")[server_name].setup ({
-             -- capabilities = capabilities
+        function(server_name)
+          require("lspconfig")[server_name].setup({
+            -- capabilities = capabilities
           })
         end,
-    }
+      }
     end
   },
   {
     "neovim/nvim-lspconfig",
     lazy = false,
     --config = function()
-      --local lspconfig = require("lspconfig")
-      --lspconfig.clangd.setup({})
-      --lspconfig.pyright.setup({})
-      --lspconfig.lua_ls.setup({})
+    --local lspconfig = require("lspconfig")
+    --lspconfig.clangd.setup({})
+    --lspconfig.pyright.setup({})
+    --lspconfig.lua_ls.setup({})
+    config = function()
+      local map = function(keys, func, desc)
+        vim.keymap.set('n', keys, func, { --[[ buffer = event.buf,  ]] desc = 'LSP: ' .. desc })
+      end
 
-      vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, {}),
-      vim.keymap.set("n", "<leader>d", vim.lsp.buf.definition, {}),
-      vim.keymap.set("n", "<leader>gd", vim.lsp.buf.declaration, {}),
-      vim.keymap.set("n", "<leader>gt", vim.lsp.buf.type_definition, {}),
-      vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {}),
-      vim.keymap.set("n", "<leader>gi", vim.lsp.buf.implementation, {}),
-      --vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {})
-      vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {}),
-    --end,
+      map('<leader>h', vim.lsp.buf.hover, 'Hover Documentation')
+      map('<leader>d', require('telescope.builtin').lsp_definitions, 'Goto [D]efinition')
+      map('<leader>gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+      map('<leader>gi', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+      map('<leader>gt', require('telescope.builtin').lsp_type_definitions, 'Type Definition')
+      map('<leader>gs', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+      -- map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+      map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+      map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+      map('<leader>gd', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+
+      -- local capabilities = vim.lsp.protocol.make_client_capabilities()
+      -- capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+    end,
   },
 }
