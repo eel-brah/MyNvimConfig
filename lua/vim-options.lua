@@ -78,7 +78,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- Costume keymaps
 vim.keymap.set("n", "<leader>w", ":w<CR>", {})
 vim.keymap.set("n", "<leader>q", ":q<CR>", {})
-vim.keymap.set("n", "<leader>!q", ":q!<CR>", {})
+vim.keymap.set("n", "<leader>1q", ":q!<CR>", {})
 vim.keymap.set("n", "<leader>x", ":x<CR>", {})
 vim.keymap.set("i", "jj", "<ESC>", {})
 vim.keymap.set("n", "<C-j>", ":cnext<CR>", {})
