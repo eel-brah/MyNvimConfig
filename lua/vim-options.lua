@@ -65,6 +65,15 @@ vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
 vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
+-- Tabs
+vim.keymap.set('n', '<leader>nt', ':tabnew<CR>')
+vim.keymap.set('n', '<leader>tn', ':tabn<CR>')
+vim.keymap.set('n', '<leader>tp', ':tabp<CR>')
+
+-- Splits
+vim.keymap.set('n', '<leader>sv', '<C-w>v')
+vim.keymap.set('n', '<leader>sh', '<C-w>s')
+
 -- Move between splits
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
