@@ -47,4 +47,21 @@ return {
       map('<leader>gd', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
     end,
   },
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    config = function()
+      require('mason-tool-installer').setup {
+        ensure_installed = {
+          'lua-language-server',
+          'vim-language-server',
+          'stylua',
+          "isort", "black",
+          "clang-format",
+          "pylint"
+        },
+        -- auto_update = false,
+        -- run_on_start = true,
+      }
+    end
+  },
 }
