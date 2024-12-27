@@ -40,7 +40,21 @@ ls.add_snippets("cpp", {
 			}
 		)
 	),
+	s(
+		"ifndef",
+		fmt(
+			[[
+  #ifndef {}
+  #define {}
 
+  #endif
+  ]],
+			{
+				i(1, "Name"),
+				rep(1, "Name"),
+			}
+		)
+	),
 	-- t('class '), i(1, 'className') , t(' {'),
 	-- t({'', '\tprivate:'}),
 	-- t({'', '\t\t'}), i(2),
