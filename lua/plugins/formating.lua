@@ -32,6 +32,7 @@ return {
       python = { "isort", "black" },
       c = { "clang_format" },
       cpp = { "clang_format" },
+      rust = {"rustfmt"},
     },
   },
 }
