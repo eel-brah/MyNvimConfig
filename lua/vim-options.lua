@@ -111,12 +111,17 @@ vim.keymap.set("n", "<Leader>de", "<cmd>lua require'dap'.terminate()<CR>", { des
 vim.keymap.set("n", "<Leader>dr", "<cmd>lua require'dap'.run_last()<CR>", { desc = "Debugger run last" })
 
 -- Costume keymaps
+vim.keymap.set({ "n", "v" }, "<leader>1q", ":q!<CR>", {})
 vim.keymap.set({ "n", "v" }, "<leader>w", ":w<CR>", {})
 vim.keymap.set({ "n", "v" }, "<leader>q", ":q<CR>", {})
-vim.keymap.set({ "n", "v" }, "<leader>1q", ":q!<CR>", {})
 vim.keymap.set({ "n", "v" }, "<leader>x", ":x<CR>", {})
 vim.keymap.set({ "n", "i", "v" }, "kj", "<ESC>", {})
 vim.keymap.set("n", "<C-j>", ":cnext<CR>", {})
 vim.keymap.set("n", "<C-k>", ":cprev<CR>", {})
 vim.keymap.set("n", "<leader>k", ":m -2<CR>", {})
 vim.keymap.set("n", "<leader>j", ":m +1<CR>", {})
+vim.keymap.set("v", "<leader>p", "\"_dP", {})
+vim.keymap.set("v", "<leader>9", "\"_d", {})
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", {})
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", {})
+vim.keymap.set("n", "J", "mzJ`z", {})
