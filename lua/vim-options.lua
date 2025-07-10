@@ -30,7 +30,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 300
 
---Hhow new splits should be opened
+-- How new splits should be opened
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
@@ -125,3 +125,4 @@ vim.keymap.set("v", "<leader>9", "\"_d", {})
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", {})
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", {})
 vim.keymap.set("n", "J", "mzJ`z", {})
+vim.keymap.set("n", "<leader>sp", ":set spell! spelllang=en_us<CR>", {desc = "spell checker"})
