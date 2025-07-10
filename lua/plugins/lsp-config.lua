@@ -39,6 +39,21 @@ return {
 		--lspconfig.pyright.setup({})
 		--lspconfig.lua_ls.setup({})
 		config = function()
+			local lspconfig = require("lspconfig")
+			local util = require("lspconfig.util")
+
+			lspconfig.move_analyzer.setup({
+				cmd = { "move-analyzer" },
+				filetypes = { "move" },
+				root_dir = util.root_pattern("Move.toml"),
+				on_exit = function()
+					local clients = vim.lsp.get_active_clients({ name = "move_analyzer" })
+					for _, client in ipairs(clients) do
+						client.stop()
+					end
+				end,
+			})
+
 			local map = function(keys, func, desc)
 				vim.keymap.set("n", keys, func, { --[[ buffer = event.buf,  ]]
 					desc = "LSP: " .. desc,
