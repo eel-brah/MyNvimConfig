@@ -34,6 +34,9 @@ return {
 			cpp = { "clang_format" },
 			move = { "prettier-move" },
 			rust = { "rustfmt" },
+			xml = { "xmlformatter" },
+			javascript = { "prettier" },
+			typescript = { "prettier" },
 		},
 		formatters = {
 			cljfmt = {

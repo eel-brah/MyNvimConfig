@@ -11,7 +11,7 @@ return {
 		lazy = false,
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "clangd", "pyright", "rust_analyzer" },
+				ensure_installed = { "lua_ls", "clangd", "pyright", "rust_analyzer", "ts_ls" },
 			})
 			-- require("mason-lspconfig").setup_handlers({
 			-- 	function(server_name)
@@ -42,6 +42,7 @@ return {
 			local lspconfig = require("lspconfig")
 			local util = require("lspconfig.util")
 
+			lspconfig.ts_ls.setup({})
 			lspconfig.move_analyzer.setup({
 				cmd = { "move-analyzer" },
 				filetypes = { "move" },
@@ -85,6 +86,9 @@ return {
 					"clang-format",
 					"pylint",
 					"rustfmt",
+					"ts_ls",
+					"eslint_d",
+					"prettier",
 				},
 				-- auto_update = false,
 				-- run_on_start = true,
